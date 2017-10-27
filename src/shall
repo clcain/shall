@@ -1,0 +1,14 @@
+#!/bin/bash
+
+INSTALL_DIR=~/git/shall/
+
+if [ -z "$2" ]
+then
+    echo "No command provided."
+    echo "Usage: shall [group] [command] [args]"
+    exit 1
+fi
+set -e
+shall-bg "${@:1}"
+cd $INSTALL_DIR/log/$1/
+tail -n 0 -f *

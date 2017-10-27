@@ -1,0 +1,22 @@
+#!/bin/bash
+
+INSTALL_DIR=~/git/shall/
+
+if [ -z "$2" ]
+then
+    echo "No command provided."
+    echo "Usage: shall-bg [group] [command] [args]"
+    exit 1
+fi
+cd $INSTALL_DIR
+if [ ! -e groups/$1 ]
+then
+    echo "Unable to find group $1."
+    exit 1
+fi
+mkdir -p log/$1
+while read host; do
+      date >> log/$1/$host
+      echo $host >> log/$1/$host
+      ssh $host "${@:2}" &>> log/$1/$host &
+done < groups/$1
