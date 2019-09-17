@@ -1,8 +1,10 @@
-The easiest way to manage a small collection of servers through SSH. `shall` uses tools already built into most GNU/Linux systems to stay as lightweigt as possible.
+# Shall (sh all)
+
+The easiest way to manage a small collection of servers through SSH. Shall uses tools already built into most GNU/Linux systems to stay as lightweigt as possible.
 
 ## Installation
 
-`shall` only needs to be in your `PATH` to run. You can run `bash install.sh` to set this up automatically.
+Shall only needs to be in your `PATH` to run. You can run `bash install.sh` to set this up automatically.
 
 ## Configuration
 
@@ -18,7 +20,9 @@ user3@host3
 
 ## Usage
 
-`shall` has two modes, live and background. To run in live mode, run `shall [group] [command]`. Press `CTRL + C` to exit live mode. To run in background mode, run `shall-bg [group] [command]`. If running in background mode, you will need to reference the `log/` directory to see the output from your commands.
+Shall has two modes, live and background.
+
+To run in live mode, run `shall [group] [command]`. Press `CTRL + C` to exit live mode.
 
 Example usage:
 
@@ -33,3 +37,5 @@ admin@workstation:~$ shall group1 uptime
 ==> user3@host3 <==
  19:20:53 up 17:18,  0 users,  load average: 0.08, 0.02, 0.01
  ```
+
+To run in background mode, run `shall-bg [group] [command]`. If running in background mode, you will need to reference the `log/` directory to see the output from your commands.
