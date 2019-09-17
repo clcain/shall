@@ -18,5 +18,5 @@ mkdir -p log/$1
 while read host; do
       date >> log/$1/$host
       echo $host >> log/$1/$host
-      ssh $host "${@:2}" &>> log/$1/$host &
+      ssh $host "${@:2}" >> log/$1/$host 2>&1 &
 done < groups/$1
