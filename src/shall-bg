@@ -8,7 +8,7 @@ then
     echo "Usage: shall-bg [group] [command] [args]"
     exit 1
 fi
-cd $shall-dir
+cd $shall_dir
 if [ ! -e groups/$1 ]
 then
     echo "Unable to find group $1."
