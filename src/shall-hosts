@@ -1,0 +1,20 @@
+#!/bin/bash
+
+INSTALL_DIR=~/git/shall/
+
+if [ -z "$1" ]
+then
+    echo "No host group provided."
+    echo "Usage: shall-hosts [group]"
+    exit 1
+fi
+cd $INSTALL_DIR
+if [ ! -e groups/$1 ]
+then
+    echo "Unable to find group $1."
+    exit 1
+fi
+mkdir -p log/$1
+while read host; do
+      echo $host
+done < groups/$1
