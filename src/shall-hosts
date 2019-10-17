@@ -1,6 +1,6 @@
 #!/bin/bash
 
-INSTALL_DIR=~/git/shall/
+shall_dir=$(dirname $(dirname $(readlink $(which shall))))
 
 if [ -z "$1" ]
 then
@@ -8,7 +8,7 @@ then
     echo "Usage: shall-hosts [group]"
     exit 1
 fi
-cd $INSTALL_DIR
+cd $shall_dir
 if [ ! -e groups/$1 ]
 then
     echo "Unable to find group $1."

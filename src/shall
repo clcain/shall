@@ -1,6 +1,6 @@
 #!/bin/bash
 
-INSTALL_DIR=~/git/shall/
+shall_dir=$(dirname $(dirname $(readlink $(which shall))))
 
 if [ -z "$2" ]
 then
@@ -10,5 +10,5 @@ then
 fi
 set -e
 shall-bg "${@:1}"
-cd $INSTALL_DIR/log/$1/
+cd $shall_dir/log/$1/
 tail -n 0 -f *
