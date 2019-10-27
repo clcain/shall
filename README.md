@@ -4,7 +4,10 @@ The easiest way to manage a small collection of servers through SSH. Shall uses 
 
 ## Installation
 
-Shall only needs to be in your `PATH` to run. You can run `bash install.sh` to set this up automatically.
+Shall only needs to be in your `PATH` to run.
+
+You can run `bash install.sh` to set up a symlink to `~/.local/bin/`.
+Ensure that `~/.local/bin` is in your PATH.
 
 ## Configuration
 
