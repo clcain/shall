@@ -8,6 +8,7 @@ then
     echo "Usage: shall [group] [command] [args]"
     exit 1
 fi
+
 set -e
 shalld "${@:1}"
 cd $shall_dir/log/$1/
