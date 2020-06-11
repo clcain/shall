@@ -9,6 +9,6 @@ then
     exit 1
 fi
 set -e
-shall-bg "${@:1}"
+shalld "${@:1}"
 cd $shall_dir/log/$1/
 tail -n 0 -f *
