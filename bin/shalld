@@ -28,5 +28,5 @@ for host in $hosts; do
     echo >> $host
     date >> $host
     echo $host >> $host
-    ssh $host "${@:2}" >> $host 2>&1 &
+    ssh -o StrictHostKeyChecking=accept-new $host "${@:2}" >> $host 2>&1 &
 done
