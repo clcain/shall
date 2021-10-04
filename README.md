@@ -57,7 +57,7 @@ To run in daemon mode, run a command with the syntax `shalld <GROUP> <COMMAND> [
 Example usage:
 
 ```
-admin@workstation:~$ shall group1 uptime
+admin@workstation:~$ shall example uptime
 ```
 
 Daemon mode is the same as live mode, except that you will not be presented with the output of your command. Instead, you must view the logs directory to see any output. This is useful for commands where you do not need to know the result, or when being used in a script.
