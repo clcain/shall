@@ -10,14 +10,22 @@ You can run `./install.sh` to set up a symlink to `~/.local/bin/`. You will also
 
 ## Configuration
 
-To get started, simply create a file in the `groups/` directory with the name of your group. On each line within the file, specify the user and/or hostname of a server that you would like to manage.
+To get started, simply create a file in the `groups/` directory with the name of your group. On each line within the file, specify a host to connect to using [SSH config](https://linux.die.net/man/5/ssh_config) syntax. Including the HostName (which may be an IP address) and the User name is optional.
 
-For example, the following could be placed in `groups/group1`:
+For example, the following could be placed in `groups/example`:
 
 ```
-user1@host1
-user2@host2
-user3@host3
+Host host1
+    HostName host1.local
+    User user1
+
+Host host2
+    HostName host2.local
+    User user2
+
+Host host3
+    HostName host3.local
+    User user3
 ```
 
 ## Usage
@@ -31,14 +39,14 @@ Live mode is the primary way to use Shall. To run in live mode, simply run a com
 Example usage:
 
 ```
-admin@workstation:~$ shall group1 uptime
-==> user1@host1 <==
+admin@workstation:~$ shall example uptime
+==> host1 <==
  19:20:54 up 17:18,  0 users,  load average: 0.21, 0.06, 0.01
 
-==> user2@host2 <==
+==> host2 <==
  19:20:54 up 17:18,  0 users,  load average: 0.22, 0.05, 0.02
 
-==> user3@host3 <==
+==> host3 <==
  19:20:53 up 17:18,  0 users,  load average: 0.08, 0.02, 0.01
  ```
 

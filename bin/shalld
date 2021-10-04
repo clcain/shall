@@ -1,7 +1,8 @@
 #!/bin/bash
 
 shall_dir=$(dirname $(dirname $(readlink $(which shall))))
-shall_groups_dir="$HOME/.ssh/shall"
+shall_groups_dir="$shall_dir/groups/"
+shall_logs_dir="$shall_dir/logs/"
 
 if [ -z "$2" ]
 then
@@ -10,21 +11,22 @@ then
     exit 1
 fi
 
-cd $shall_dir
+group=$1
 
-if [ ! -e $shall_groups_dir/$1 ]
+if [ ! -e $shall_groups_dir/$group ]
 then
-    echo "Unable to find group $1."
+    echo "Unable to find group $group."
     exit 1
 fi
 
-mkdir -p log/$1
+hosts=$(grep "^Host " $shall_groups_dir/$group | sed "s/Host //g")
 
-hosts=$(grep "^Host " $shall_groups_dir/$1 | sed "s/Host //g")
+mkdir -p $shall_logs_dir/$group
+cd $shall_logs_dir/$group
 
 for host in $hosts; do
-      echo >> logs/$1/$host
-      date >> logs/$1/$host
-      echo $host >> logs/$1/$host
-      ssh $host "${@:2}" >> logs/$1/$host 2>&1 &
+    echo >> $host
+    date >> $host
+    echo $host >> $host
+    ssh $host "${@:2}" >> $host 2>&1 &
 done

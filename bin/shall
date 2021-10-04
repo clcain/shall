@@ -1,6 +1,7 @@
 #!/bin/bash
 
 shall_dir=$(dirname $(dirname $(readlink $(which shall))))
+shall_logs_dir="$shall_dir/logs/"
 
 if [ -z "$2" ]
 then
@@ -9,7 +10,9 @@ then
     exit 1
 fi
 
+group=$1
+
 set -e
 shalld "${@:1}"
-cd $shall_dir/logs/$1/
+cd $shall_logs_dir/$group/
 tail -n 0 -f *
