@@ -6,7 +6,7 @@ shall_groups_dir="$HOME/.ssh/shall"
 if [ -z "$2" ]
 then
     echo "No command provided."
-    echo "Usage: shalld [group] [command] [args]"
+    echo "Usage: shalld <GROUP> <COMMAND> [ARGS]"
     exit 1
 fi
 
@@ -23,7 +23,8 @@ mkdir -p log/$1
 hosts=$(grep "^Host " $shall_groups_dir/$1 | sed "s/Host //g")
 
 for host in $hosts; do
-      date >> log/$1/$host
-      echo $host >> log/$1/$host
-      ssh $host "${@:2}" >> log/$1/$host 2>&1 &
+      echo >> logs/$1/$host
+      date >> logs/$1/$host
+      echo $host >> logs/$1/$host
+      ssh $host "${@:2}" >> logs/$1/$host 2>&1 &
 done

@@ -5,11 +5,11 @@ shall_dir=$(dirname $(dirname $(readlink $(which shall))))
 if [ -z "$2" ]
 then
     echo "No command provided."
-    echo "Usage: shall [group] [command] [args]"
+    echo "Usage: shall <GROUP> <COMMAND> [ARGS]"
     exit 1
 fi
 
 set -e
 shalld "${@:1}"
-cd $shall_dir/log/$1/
+cd $shall_dir/logs/$1/
 tail -n 0 -f *

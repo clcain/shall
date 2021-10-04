@@ -12,7 +12,7 @@ You can run `./install.sh` to set up a symlink to `~/.local/bin/`. You will also
 
 To get started, simply create a file in the `groups/` directory with the name of your group. On each line within the file, specify the user and/or hostname of a server that you would like to manage.
 
-For example, the following cloud be placed in `groups/group1`:
+For example, the following could be placed in `groups/group1`:
 
 ```
 user1@host1
@@ -22,9 +22,11 @@ user3@host3
 
 ## Usage
 
-Shall has two modes, live and background.
+Shall has two modes: live mode and daemon mode.
 
-To run in live mode, run `shall <GROUP> <COMMAND>`. Press `CTRL + C` to exit live mode.
+### Live Mode
+
+Live mode is the primary way to use Shall. To run in live mode, simply run a command with the syntax `shall <GROUP> <COMMAND> [ARGS]`. Press `CTRL + C` to exit live mode.
 
 Example usage:
 
@@ -40,11 +42,14 @@ admin@workstation:~$ shall group1 uptime
  19:20:53 up 17:18,  0 users,  load average: 0.08, 0.02, 0.01
  ```
 
-To run in background mode, run `shall-bg <GROUP> <COMMAND>`.
+### Daemon Mode
+
+To run in daemon mode, run a command with the syntax `shalld <GROUP> <COMMAND> [ARGS]`.
 
 Example usage:
+
 ```
 admin@workstation:~$ shall group1 uptime
 ```
 
-If running in background mode, you will need to reference the `log/` directory to see the output from your commands.
+Daemon mode is the same as live mode, except that you will not be presented with the output of your command. Instead, you must view the logs directory to see any output. This is useful for commands where you do not need to know the result, or when being used in a script.
