@@ -1,0 +1,25 @@
+#!/bin/bash
+
+shall_dir=$(dirname $(dirname $(readlink $(which shall))))
+shall_logs_dir="$shall_dir/logs/"
+
+if [ -z "$2" ]
+then
+    echo "Usage: shallscript <GROUP> <URL>"
+    exit 1
+fi
+
+group=$1
+url=$2
+
+http_status_code=$(curl -s -o /dev/null -w %{http_code} $url)
+
+if [ $http_status_code != "200" ]
+then
+    echo "Error downloading script: $http_status_code"
+    exit 1
+fi
+
+cmd=$(curl -s $url)
+
+shall $1 "$cmd"
