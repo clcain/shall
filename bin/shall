@@ -5,7 +5,6 @@ shall_logs_dir="$shall_dir/logs/"
 
 if [ -z "$2" ]
 then
-    echo "No command provided."
     echo "Usage: shall <GROUP> <COMMAND> [ARGS]"
     exit 1
 fi
