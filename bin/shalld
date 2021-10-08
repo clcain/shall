@@ -1,9 +1,5 @@
 #!/bin/bash
 
-shall_dir=$(dirname $(dirname $(readlink $(which shall))))
-shall_groups_dir="$shall_dir/groups/"
-shall_logs_dir="$shall_dir/logs/"
-
 if [ -z "$2" ]
 then
     echo "Usage: shalld <GROUP> <COMMAND> [ARGS]"
@@ -12,9 +8,18 @@ fi
 
 group=$1
 
+if [ -z "$SHALL_DIR" ]
+then
+    echo "Error: SHALL_DIR is not defined."
+    exit 1
+fi
+
+shall_groups_dir="$SHALL_DIR/groups/"
+shall_logs_dir="$SHALL_DIR/logs/"
+
 if [ ! -e $shall_groups_dir/$group ]
 then
-    echo "Unable to find group $group."
+    echo "Error: Unable to find group $group."
     exit 1
 fi
 
@@ -24,5 +29,5 @@ mkdir -p $shall_logs_dir/$group
 cd $shall_logs_dir/$group
 
 for host in $hosts; do
-    ssh -o StrictHostKeyChecking=accept-new $host "${@:2}" >> $host 2>&1 &
+    ssh -o StrictHostKeyChecking=accept-new -o BatchMode=yes -T $host "${@:2}" >> $host 2>&1 &
 done
