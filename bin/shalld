@@ -29,5 +29,6 @@ mkdir -p $shall_logs_dir/$group
 cd $shall_logs_dir/$group
 
 for host in $hosts; do
+    touch $host
     ssh -o StrictHostKeyChecking=accept-new -o BatchMode=yes -T $host "${@:2}" >> $host 2>&1 &
 done
