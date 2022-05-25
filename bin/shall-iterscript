@@ -2,7 +2,7 @@
 
 if [ -z "$2" ]
 then
-    echo "Usage: shall-iterscript GROUP SCRIPT"
+    echo "Usage: shall-iterscript GROUP SCRIPT [ARGS...]"
     exit 1
 fi
 
@@ -14,6 +14,7 @@ fi
 
 group=$1
 iterscript_path=$2
+args="${@:3}"
 
 if [ ! -f $iterscript_path ]
 then
@@ -34,6 +35,6 @@ hosts=$(grep "^Host " $shall_groups_dir/$group | sed "s/Host //g")
 for host in $hosts
 do
     echo "==> $host <=="
-    $iterscript_path $host
+    $iterscript_path $host $args
     echo
 done
