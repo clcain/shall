@@ -33,5 +33,7 @@ hosts=$(grep "^Host " $shall_groups_dir/$group | sed "s/Host //g")
 
 for host in $hosts
 do
+    echo "==> $host <=="
     $iterscript_path $host
+    echo
 done
