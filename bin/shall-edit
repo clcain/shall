@@ -2,7 +2,7 @@
 
 if [ -z "$1" ]
 then
-    echo "Usage: shall-group <GROUP>"
+    echo "Usage: shall-edit GROUP"
     exit 1
 fi
 
@@ -17,5 +17,4 @@ fi
 shall_groups_dir="$SHALL_DIR/groups"
 
 mkdir -p $shall_groups_dir
-
-vi $shall_groups_dir/$group
+$EDITOR $shall_groups_dir/$group

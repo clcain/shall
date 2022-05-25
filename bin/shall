@@ -1,8 +1,11 @@
 #!/bin/bash
 
+set -e
+set -o pipefail
+
 if [ -z "$2" ]
 then
-    echo "Usage: shall <GROUP> <COMMAND> [ARGS]"
+    echo "Usage: shall GROUP COMMAND ARGS..."
     exit 1
 fi
 
@@ -15,8 +18,6 @@ then
 fi
 
 shall_logs_dir="$SHALL_DIR/logs/"
-
-set -e
 shalld "${@:1}"
 cd $shall_logs_dir/$group/
 tail -n 0 -f *

@@ -2,12 +2,9 @@
 
 if [ -z "$2" ]
 then
-    echo "Usage: shallscript <GROUP> <URL>"
+    echo "Usage: shall-script GROUP SCRIPT"
     exit 1
 fi
-
-group=$1
-url=$2
 
 if [ -z "$SHALL_DIR" ]
 then
@@ -15,16 +12,17 @@ then
     exit 1
 fi
 
-shall_logs_dir="$SHALL_DIR/logs/"
+group=$1
+scriptname=$2
 
-http_status_code=$(curl -s -o /dev/null -w %{http_code} $url)
+shall_scripts_dir="$SHALL_DIR/scripts/"
+shall_script_path=$shall_scripts_dir/$scriptname
 
-if [ $http_status_code != "200" ]
+if [ ! -f $shall_script_path ]
 then
-    echo "Error downloading script: $http_status_code"
+    echo "Error: Unable to find script: $shall_script_path"
     exit 1
 fi
 
-cmd=$(curl -s $url)
-
-shall $1 "$cmd"
+cmd=$(cat $shall_scripts_dir/$scriptname)
+shall $group "$cmd"

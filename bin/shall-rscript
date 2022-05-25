@@ -1,0 +1,28 @@
+#!/bin/bash
+
+if [ -z "$2" ]
+then
+    echo "Usage: shall-rscript GROUP REMOTE_HTTP_URL"
+    exit 1
+fi
+
+group=$1
+url=$2
+
+if [ -z "$SHALL_DIR" ]
+then
+    echo "Error: SHALL_DIR is not defined."
+    exit 1
+fi
+
+shall_logs_dir="$SHALL_DIR/logs/"
+
+http_status_code=$(curl -s -o /dev/null -w %{http_code} $url)
+if [ $http_status_code != "200" ]
+then
+    echo "Error downloading script: HTTP $http_status_code"
+    exit 1
+fi
+
+cmd=$(curl -s $url)
+shall $group "$cmd"
