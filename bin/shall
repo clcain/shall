@@ -5,7 +5,7 @@ set -o pipefail
 
 if [ -z "$2" ]
 then
-    echo "Usage: shall GROUP COMMAND ARGS..."
+    echo "Usage: shall GROUP COMMAND [ARGS...]"
     exit 1
 fi
 
