@@ -14,7 +14,7 @@ then
     exit 1
 fi
 
-shall_groups_dir="$SHALL_DIR/groups/"
+shall_groups_dir="$SHALL_DIR/groups"
 
 if [ ! -e $shall_groups_dir/$group ]
 then

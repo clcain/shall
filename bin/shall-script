@@ -15,7 +15,7 @@ fi
 group=$1
 scriptname=$2
 
-shall_scripts_dir="$SHALL_DIR/scripts/"
+shall_scripts_dir="$SHALL_DIR/scripts"
 shall_script_path=$shall_scripts_dir/$scriptname
 
 if [ ! -f $shall_script_path ]

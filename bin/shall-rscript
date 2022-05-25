@@ -15,8 +15,6 @@ then
     exit 1
 fi
 
-shall_logs_dir="$SHALL_DIR/logs/"
-
 http_status_code=$(curl -s -o /dev/null -w %{http_code} $url)
 if [ $http_status_code != "200" ]
 then
