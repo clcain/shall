@@ -1,0 +1,37 @@
+#!/bin/bash
+
+if [ -z "$2" ]
+then
+    echo "Usage: shall-iterscript GROUP SCRIPT"
+    exit 1
+fi
+
+if [ -z "$SHALL_DIR" ]
+then
+    echo "Error: SHALL_DIR is not defined."
+    exit 1
+fi
+
+group=$1
+iterscript_path=$2
+
+if [ ! -f $iterscript_path ]
+then
+    echo "Error: Unable to find script: $iterscript_path"
+    exit 1
+fi
+
+shall_groups_dir="$SHALL_DIR/groups/"
+
+if [ ! -e $shall_groups_dir/$group ]
+then
+    echo "Error: Unable to find group $group."
+    exit 1
+fi
+
+hosts=$(grep "^Host " $shall_groups_dir/$group | sed "s/Host //g")
+
+for host in $hosts
+do
+    $iterscript_path $host
+done
