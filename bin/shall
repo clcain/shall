@@ -18,6 +18,7 @@ then
 fi
 
 shall_logs_dir="$SHALL_DIR/logs/"
+
 shalld "${@:1}"
 cd $shall_logs_dir/$group/
 tail -n 0 -f *

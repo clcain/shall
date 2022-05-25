@@ -1,0 +1,26 @@
+#!/bin/bash
+
+if [ -z "$1" ]
+then
+    echo "Usage: shall-hosts GROUP"
+    exit 1
+fi
+
+group=$1
+
+if [ -z "$SHALL_DIR" ]
+then
+    echo "Error: SHALL_DIR is not defined."
+    exit 1
+fi
+
+shall_groups_dir="$SHALL_DIR/groups/"
+
+if [ ! -e $shall_groups_dir/$group ]
+then
+    echo "Error: Unable to find group $group."
+    exit 1
+fi
+
+hosts=$(grep "^Host " $shall_groups_dir/$group | sed "s/Host //g")
+echo $hosts
