@@ -15,13 +15,24 @@ fi
 group=$1
 scriptname=$2
 
+if [ ! -f $scriptname ]
+then
+    echo "Error: Unable to find script: $shall_script_path"
+    exit 1
+fi
+
 shall_scripts_dir="$SHALL_DIR/scripts"
 shall_script_path=$shall_scripts_dir/$scriptname
 
 if [ ! -f $shall_script_path ]
 then
-    echo "Error: Unable to find script: $shall_script_path"
-    exit 1
+    if [ -f $scriptname ]
+    then
+        shall_script_path=$scriptname
+    else
+        echo "Error: Unable to find script: $shall_script_path"
+        exit 1
+    fi
 fi
 
 cmd=$(cat $shall_script_path)
